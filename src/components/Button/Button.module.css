@@ -1,0 +1,46 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 13px 22px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: var(--font-extrabold);
+  line-height: normal;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.button:disabled {
+  background-color: var(--text-disabled);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+.primary {
+  background-color: var(--color-red);
+  color: var(--text-primary);
+}
+
+.secondary {
+  background-color: var(--text-primary);
+  color: var(--bg-page);
+}
+
+.transparent {
+  background-color: var(--tint-white);
+  color: var(--text-primary);
+}
+
+.transparent:not(:disabled):hover {
+  background-color: var(--text-secondary);
+  backdrop-filter: blur(22px);
+}
