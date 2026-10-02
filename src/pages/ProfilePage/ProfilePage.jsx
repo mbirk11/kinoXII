@@ -1,5 +1,9 @@
 function ProfilePage() {
-  return <h1 className="text-display">My Profile</h1>
+  return (
+    <div className="page">
+      <h1 className="text-display">My Profile</h1>
+    </div>
+  )
 }
 
 export default ProfilePage
