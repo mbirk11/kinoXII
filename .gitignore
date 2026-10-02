@@ -28,3 +28,6 @@ dist-ssr
 
 # Figma exports (local design reference only)
 designs/
+
+# Local reference notes (assignment spec, API schema, design tokens)
+docs/
