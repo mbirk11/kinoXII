@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Button from '../Button/Button'
 import Logo from '../Logo/Logo'
+import useAuth from '../../hooks/useAuth'
 import searchIcon from '../../assets/icons/magnifying-glass.svg'
 import caretIcon from '../../assets/icons/caret-down.svg'
 import dotComplete from '../../assets/icons/status-dot-complete.svg'
@@ -16,7 +17,10 @@ function getInitials(name = '') {
     .join('')
 }
 
-function Navbar({ user, onLoginClick, onSignUpClick }) {
+function Navbar() {
+  const { user, isAuthLoading, openLogin, openRegister } = useAuth()
+  const displayName = user?.fullName || user?.username
+
   return (
     <header className={styles.navbar}>
       <div className={styles.inner}>
@@ -46,26 +50,26 @@ function Navbar({ user, onLoginClick, onSignUpClick }) {
                   {user.avatar ? (
                     <img className={styles.avatarImage} src={user.avatar} alt="" />
                   ) : (
-                    getInitials(user.name)
+                    getInitials(displayName)
                   )}
                   <img
                     className={styles.statusDot}
-                    src={user.isProfileComplete ? dotComplete : dotIncomplete}
+                    src={user.profileComplete ? dotComplete : dotIncomplete}
                     alt=""
                     width="10"
                     height="10"
                   />
                 </span>
-                <span className={styles.userName}>{user.name}</span>
+                <span className={styles.userName}>{displayName}</span>
               </span>
               <img src={caretIcon} alt="" width="16" height="16" />
             </button>
-          ) : (
+          ) : isAuthLoading ? null : (
             <div className={styles.authButtons}>
-              <Button variant="primary" onClick={onSignUpClick}>
+              <Button variant="primary" onClick={openRegister}>
                 Sign up
               </Button>
-              <Button variant="secondary" onClick={onLoginClick}>
+              <Button variant="secondary" onClick={openLogin}>
                 Log in
               </Button>
             </div>

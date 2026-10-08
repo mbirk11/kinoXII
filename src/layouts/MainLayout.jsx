@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
+import AuthModals from '../components/AuthModals/AuthModals'
 import styles from './MainLayout.module.css'
 
 function MainLayout() {
@@ -11,6 +12,7 @@ function MainLayout() {
         <Outlet />
       </main>
       <Footer />
+      <AuthModals />
     </div>
   )
 }
