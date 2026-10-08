@@ -1,8 +1,20 @@
+import HeroSlider from './HeroSlider'
+import NowPlayingSection from './NowPlayingSection'
+import ComingSoonSection from './ComingSoonSection'
+import RecentlyViewedSection from './RecentlyViewedSection'
+import styles from './HomePage.module.css'
+
 function HomePage() {
   return (
-    <div className="page">
-      <h1 className="text-display">Home</h1>
-    </div>
+    <>
+      <HeroSlider />
+      <div className={styles.sections}>
+        <RecentlyViewedSection />
+        <NowPlayingSection />
+        <div className={styles.divider} />
+        <ComingSoonSection />
+      </div>
+    </>
   )
 }
 

@@ -1,0 +1,42 @@
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 32px 0 80px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 70px;
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--bg-raised);
+}
+
+.empty {
+  padding: 40px 24px;
+  border-radius: 20px;
+  background-color: var(--bg-card);
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.recent {
+  gap: 20px;
+  padding-top: 9px;
+}

@@ -1,0 +1,81 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: var(--font-semibold);
+  line-height: normal;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background-color: var(--bg-card);
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+}
+
+.control:hover {
+  border-color: var(--text-disabled);
+  background-color: var(--bg-raised);
+}
+
+.control:focus-within {
+  border-color: var(--text-disabled);
+  background-color: var(--bg-card);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 12px;
+  font-weight: var(--font-semibold);
+  line-height: normal;
+}
+
+.input::placeholder {
+  color: var(--text-secondary);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.helper {
+  margin-top: -2px;
+  font-size: 12px;
+  font-weight: var(--font-semibold);
+  line-height: normal;
+}
+
+.error .label,
+.error .input,
+.error .helper {
+  color: var(--color-red);
+}
+
+.error .control,
+.error .control:hover,
+.error .control:focus-within {
+  border-color: var(--color-red);
+  background-color: var(--bg-card);
+}
