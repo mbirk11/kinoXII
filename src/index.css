@@ -34,7 +34,8 @@
   font-family: var(--font-family);
   font-weight: var(--font-regular);
   color: var(--text-primary);
-  background-color: var(--bg-page);
+  /* Outside the 1728px page column */
+  background-color: #000000;
   color-scheme: dark;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
