@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding: 41px 0 80px;
+  padding: 32px 0 80px;
 }
 
 .section {
@@ -34,4 +34,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+}
+
+.recent {
+  gap: 20px;
+  padding-top: 9px;
 }
