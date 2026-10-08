@@ -1,25 +1,13 @@
 import { Link } from 'react-router-dom'
 import Button from '../Button/Button'
 import Logo from '../Logo/Logo'
+import ProfileMenu from '../ProfileMenu/ProfileMenu'
 import useAuth from '../../hooks/useAuth'
 import searchIcon from '../../assets/icons/magnifying-glass.svg'
-import caretIcon from '../../assets/icons/caret-down.svg'
-import dotComplete from '../../assets/icons/status-dot-complete.svg'
-import dotIncomplete from '../../assets/icons/status-dot-incomplete.svg'
 import styles from './Navbar.module.css'
-
-function getInitials(name = '') {
-  return name
-    .split(' ')
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((word) => word[0].toUpperCase())
-    .join('')
-}
 
 function Navbar() {
   const { user, isAuthLoading, openLogin, openRegister } = useAuth()
-  const displayName = user?.fullName || user?.username
 
   return (
     <header className={styles.navbar}>
@@ -43,28 +31,8 @@ function Navbar() {
             </label>
           </div>
 
-          {user ? (
-            <button type="button" className={styles.profile}>
-              <span className={styles.user}>
-                <span className={styles.avatar}>
-                  {user.avatar ? (
-                    <img className={styles.avatarImage} src={user.avatar} alt="" />
-                  ) : (
-                    getInitials(displayName)
-                  )}
-                  <img
-                    className={styles.statusDot}
-                    src={user.profileComplete ? dotComplete : dotIncomplete}
-                    alt=""
-                    width="10"
-                    height="10"
-                  />
-                </span>
-                <span className={styles.userName}>{displayName}</span>
-              </span>
-              <img src={caretIcon} alt="" width="16" height="16" />
-            </button>
-          ) : isAuthLoading ? null : (
+          {user && <ProfileMenu />}
+          {!user && !isAuthLoading && (
             <div className={styles.authButtons}>
               <Button variant="primary" onClick={openRegister}>
                 Sign up
