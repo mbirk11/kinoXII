@@ -41,7 +41,7 @@
 .content {
   position: absolute;
   bottom: 179px;
-  left: max(67px, calc(50% - 797px));
+  left: 67px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -112,8 +112,8 @@
 .controls {
   position: absolute;
   bottom: 42px;
-  left: max(67px, calc(50% - 797px));
-  right: max(67px, calc(50% - 797px));
+  left: 67px;
+  right: 67px;
   display: flex;
   align-items: center;
   gap: 20px;
