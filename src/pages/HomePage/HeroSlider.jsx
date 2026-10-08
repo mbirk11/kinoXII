@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Badge from '../../components/Badge/Badge'
 import Button from '../../components/Button/Button'
 import ErrorState from '../../components/ErrorState/ErrorState'
@@ -12,6 +12,7 @@ import timerIcon from '../../assets/icons/timer.svg'
 import styles from './HeroSlider.module.css'
 
 const PREMIERE_WINDOW_DAYS = 30
+const SLIDE_DURATION_MS = 7000
 
 function getHeroLabel(movie) {
   const daysSinceRelease = (Date.now() - new Date(movie.releaseDate)) / 86_400_000
@@ -24,6 +25,18 @@ function getHeroLabel(movie) {
 function HeroSlider() {
   const { data: movies, isLoading, error, retry } = useAsync(getFeaturedMovies)
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+  const slideCount = movies?.length ?? 0
+
+  // Auto-advance; restarts whenever the slide changes, paused while hovered
+  useEffect(() => {
+    if (slideCount < 2 || isPaused) return
+    const timer = setTimeout(
+      () => setActiveIndex((index) => (index + 1) % slideCount),
+      SLIDE_DURATION_MS,
+    )
+    return () => clearTimeout(timer)
+  }, [activeIndex, isPaused, slideCount])
 
   if (isLoading) {
     return (
@@ -56,7 +69,13 @@ function HeroSlider() {
   const goTo = (index) => setActiveIndex((index + movies.length) % movies.length)
 
   return (
-    <section className={styles.hero} aria-roledescription="carousel" aria-label="Featured films">
+    <section
+      className={styles.hero}
+      aria-roledescription="carousel"
+      aria-label="Featured films"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       {movies.map((item, index) => (
         <div
           key={item.id}
@@ -101,19 +120,11 @@ function HeroSlider() {
             <button
               key={item.id}
               type="button"
-              className={styles.segment}
+              className={`${styles.segment} ${index === activeIndex ? styles.segmentActive : ''}`}
               onClick={() => goTo(index)}
               aria-label={`Show ${item.title}`}
               aria-current={index === activeIndex}
-            >
-              {index === activeIndex && (
-                <span
-                  key={activeIndex}
-                  className={styles.segmentFill}
-                  onAnimationEnd={() => goTo(activeIndex + 1)}
-                />
-              )}
-            </button>
+            />
           ))}
         </div>
         <div className={styles.arrows}>
