@@ -50,7 +50,8 @@ function AuthProvider({ children }) {
 
     const pendingAction = pendingActionRef.current
     pendingActionRef.current = null
-    pendingAction?.(signedInUser)
+    // The action reports its own errors; just avoid an unhandled rejection
+    Promise.resolve(pendingAction?.(signedInUser)).catch(() => {})
   }, [])
 
   const login = useCallback(
