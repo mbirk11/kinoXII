@@ -1,0 +1,38 @@
+.wrapper {
+  position: relative;
+}
+
+.row {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  /* Room for card shadows without clipping */
+  padding-block: 4px;
+  margin-block: -4px;
+}
+
+.row::-webkit-scrollbar {
+  display: none;
+}
+
+.row > * {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+.fade {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 140px;
+  background: linear-gradient(90deg, rgba(7, 12, 28, 0) 0%, var(--bg-page) 90%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.fadeVisible {
+  opacity: 1;
+}
