@@ -4,12 +4,24 @@
   left: 0;
   right: 0;
   z-index: 10;
+}
+
+/* Shadow behind the navbar so it stays readable over bright hero images */
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 180px;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.56) 0%,
-    rgba(0, 0, 0, 0.51) 30%,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.6) 45%,
     rgba(0, 0, 0, 0) 100%
   );
+  pointer-events: none;
 }
 
 .inner {
