@@ -34,7 +34,9 @@ export async function apiRequest(path, { method = 'GET', body, params, skipAuthH
   const url = new URL(API_URL + path)
   if (params) {
     Object.entries(params).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== '') {
+      if (Array.isArray(value)) {
+        value.forEach((item) => url.searchParams.append(key, item))
+      } else if (value !== undefined && value !== null && value !== '') {
         url.searchParams.set(key, value)
       }
     })
