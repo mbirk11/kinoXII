@@ -8,8 +8,9 @@ import styles from './Navbar.module.css'
 
 function Navbar() {
   const { user, isAuthLoading, openLogin, openRegister } = useAuth()
-  // The home hero gets a stronger shadow so the navbar reads over bright images
-  const isOverHero = useLocation().pathname === '/'
+  // Pages with a hero image get a stronger shadow so the navbar reads over bright images
+  const { pathname } = useLocation()
+  const isOverHero = pathname === '/' || pathname.startsWith('/movies/')
 
   return (
     <header className={`${styles.navbar} ${isOverHero ? styles.overHero : ''}`}>

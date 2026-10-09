@@ -50,6 +50,13 @@
   color: var(--text-secondary);
 }
 
+.headerActions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 16px;
+}
+
 .close {
   flex-shrink: 0;
 }

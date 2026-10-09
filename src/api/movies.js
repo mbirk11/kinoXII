@@ -24,3 +24,13 @@ export async function searchMovies(query) {
   const { data } = await apiRequest('/search', { params: { q: query } })
   return data
 }
+
+export async function getMovie(slug) {
+  const { data } = await apiRequest(`/movies/${slug}`)
+  return data
+}
+
+export async function getMovieSessions(slug, date) {
+  const { data } = await apiRequest(`/movies/${slug}/sessions`, { params: { date } })
+  return data
+}
