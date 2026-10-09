@@ -2,14 +2,14 @@
   position: relative;
   display: flex;
   justify-content: flex-end;
-  width: 480px;
+  width: clamp(260px, 30vw, 480px);
 }
 
 .field {
   display: flex;
   align-items: center;
   gap: 6px;
-  width: 380px;
+  width: 80%;
   height: 41px;
   padding: 6px 8px 6px 14px;
   border-radius: 999px;
@@ -20,7 +20,7 @@
 }
 
 .open .field {
-  width: 480px;
+  width: 100%;
   background-color: rgba(255, 255, 255, 0.25);
 }
 

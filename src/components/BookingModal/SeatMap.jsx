@@ -1,3 +1,4 @@
+import useElementWidth from '../../hooks/useElementWidth'
 import styles from './BookingModal.module.css'
 
 const STATE_LABELS = {
@@ -13,11 +14,11 @@ function rowRange(rows) {
   return first === last ? `Row ${first}` : `Rows ${first}-${last}`
 }
 
-const MAP_WIDTH = 680
+const DEFAULT_MAP_WIDTH = 680
 const ROW_LABEL_WIDTH = 28
 
 // Largest seat size (max 52px) that lets the widest row fit the map column
-function getSeatSizing(sections) {
+function getSeatSizing(sections, mapWidth) {
   const rows = sections.flatMap((section) => section.rows)
   const widest = Math.max(
     ...rows.map((row) => ({
@@ -25,7 +26,7 @@ function getSeatSizing(sections) {
       aisles: row.seats.filter((seat) => seat.aisleAfter).length,
     })).map(({ seats, aisles }) => seats * 60 + aisles * 24),
   )
-  const scale = Math.min(1, (MAP_WIDTH - ROW_LABEL_WIDTH) / widest)
+  const scale = Math.min(1, (mapWidth - ROW_LABEL_WIDTH) / widest)
   return {
     '--seat-size': `${Math.floor(52 * scale)}px`,
     '--seat-gap': `${Math.max(4, Math.floor(8 * scale))}px`,
@@ -35,8 +36,14 @@ function getSeatSizing(sections) {
 
 // Drawn straight from the API: sections > rows > seats, with aisles and gaps from the data
 function SeatMap({ seatMap, selectedIds, onToggleSeat }) {
+  const [mapRef, mapWidth] = useElementWidth()
+
   return (
-    <div className={styles.seatMap} style={getSeatSizing(seatMap.sections)}>
+    <div
+      ref={mapRef}
+      className={styles.seatMap}
+      style={getSeatSizing(seatMap.sections, mapWidth || DEFAULT_MAP_WIDTH)}
+    >
       <div className={styles.screen}>Screen</div>
 
       {seatMap.sections.map((section) => (

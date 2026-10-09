@@ -59,7 +59,7 @@
 .right {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: clamp(16px, 2vw, 32px);
 }
 
 .authButtons {
