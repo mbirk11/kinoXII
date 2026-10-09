@@ -1,0 +1,243 @@
+.sessionsPage {
+  padding-top: 117px;
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: var(--font-extrabold);
+  line-height: normal;
+}
+
+.pageSubtitle {
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--text-secondary);
+}
+
+.layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 51px;
+  margin-top: 33px;
+}
+
+/* Filter sidebar */
+.sidebar {
+  position: sticky;
+  top: 24px;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  width: 320px;
+  padding: 24px;
+  border-radius: 20px;
+  background-color: var(--bg-card);
+}
+
+.sidebarTitle {
+  margin-bottom: 24px;
+  font-size: 18px;
+  font-weight: var(--font-extrabold);
+  line-height: normal;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--bg-raised);
+}
+
+.group + .group {
+  padding-top: 24px;
+}
+
+.groupTitle {
+  font-size: 12px;
+  font-weight: var(--font-semibold);
+  line-height: normal;
+  letter-spacing: 0.72px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.sidebarFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: 24px;
+}
+
+.clearButton {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--text-secondary);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: var(--font-semibold);
+  line-height: normal;
+  transition: background-color 0.2s;
+}
+
+.clearButton:hover {
+  background-color: var(--tint-white);
+}
+
+.activeCount {
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--text-secondary);
+}
+
+/* Results */
+.results {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+  scroll-margin-top: 24px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 18px;
+}
+
+.counter {
+  font-size: 14px;
+  font-weight: var(--font-semibold);
+  line-height: normal;
+}
+
+.searchChip {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  padding: 6px 8px 6px 14px;
+  border-radius: 999px;
+  background-color: var(--tint-white);
+  font-size: 12px;
+  font-weight: var(--font-semibold);
+}
+
+.searchClear {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.searchClear:hover {
+  background-color: var(--tint-white);
+}
+
+.groups {
+  display: flex;
+  flex-direction: column;
+}
+
+.movieGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.movieGroup + .movieGroup {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--bg-raised);
+}
+
+.movieHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.posterLink {
+  flex-shrink: 0;
+}
+
+.poster {
+  width: 56px;
+  height: 80px;
+  border-radius: 6px;
+  object-fit: cover;
+  background-color: var(--bg-raised);
+}
+
+.movieInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.movieTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.movieTitle {
+  font-size: 18px;
+  font-weight: var(--font-extrabold);
+  line-height: normal;
+}
+
+.movieTitle:hover {
+  text-decoration: underline;
+}
+
+.ageBadge {
+  padding-inline: 8px;
+}
+
+.runtime {
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--text-secondary);
+}
+
+.skeletonRow {
+  display: flex;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 64px 24px;
+  border-radius: 20px;
+  background-color: var(--bg-card);
+  text-align: center;
+}
+
+.emptyTitle {
+  font-size: 18px;
+  font-weight: var(--font-extrabold);
+}
+
+.emptyText {
+  max-width: 360px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--text-secondary);
+}
