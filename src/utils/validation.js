@@ -33,3 +33,49 @@ export function validateAvatar(file) {
   if (file.size > AVATAR_MAX_SIZE) return 'Avatar must be smaller than 2MB'
   return null
 }
+
+export function validateFullName(value) {
+  const name = value.trim()
+  if (!name) return 'Name is required'
+  if (name.length < 3) return 'Name must be at least 3 characters'
+  if (name.length > 50) return 'Name must not exceed 50 characters'
+  return null
+}
+
+// Georgian mobile: 9 digits starting with 5, spaces allowed while typing
+export function validateMobileNumber(value) {
+  const digits = value.replace(/\s/g, '')
+  if (!digits) return 'Mobile number is required'
+  if (!/^\d+$/.test(digits)) {
+    return 'Please enter a valid Georgian mobile number (9 digits starting with 5)'
+  }
+  if (!digits.startsWith('5')) return 'Georgian mobile numbers must start with 5'
+  if (digits.length !== 9) return 'Mobile number must be exactly 9 digits'
+  return null
+}
+
+export function validateCardNumber(value) {
+  const digits = value.replace(/\s/g, '')
+  if (!digits) return 'Card number is required'
+  if (!/^\d{16}$/.test(digits)) return 'Card number must be 16 digits'
+  return null
+}
+
+export function validateExpiry(value) {
+  if (!value) return 'Expiry date is required'
+  const match = value.match(/^(0[1-9]|1[0-2])\/(\d{2})$/)
+  if (!match) return 'Use the MM/YY format'
+  const month = Number(match[1])
+  const year = 2000 + Number(match[2])
+  const now = new Date()
+  const isPast =
+    year < now.getFullYear() || (year === now.getFullYear() && month < now.getMonth() + 1)
+  if (isPast) return 'Card has expired'
+  return null
+}
+
+export function validateCvv(value) {
+  if (!value) return 'CVV is required'
+  if (!/^\d{3}$/.test(value)) return 'CVV must be 3 digits'
+  return null
+}
