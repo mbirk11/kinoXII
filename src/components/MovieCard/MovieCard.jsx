@@ -4,15 +4,22 @@ import Skeleton from '../Skeleton/Skeleton'
 import { formatMovieMeta, formatPrice } from '../../utils/format'
 import styles from './MovieCard.module.css'
 
+// On hover the card widens, swaps the poster for the backdrop and reveals the synopsis
 function MovieCard({ movie }) {
   return (
     <Link to={`/movies/${movie.slug}`} className={styles.card}>
-      <img className={styles.poster} src={movie.posterUrl} alt={movie.title} loading="lazy" />
+      <div className={styles.media}>
+        <img className={styles.poster} src={movie.posterUrl} alt={movie.title} loading="lazy" />
+        {movie.backdropUrl && (
+          <img className={styles.backdrop} src={movie.backdropUrl} alt="" loading="lazy" />
+        )}
+      </div>
       <div className={styles.info}>
         <h3 className={styles.title}>{movie.title}</h3>
         <p className={styles.meta}>{formatMovieMeta(movie)}</p>
-        <Badge>{movie.ageRating.code}</Badge>
+        <Badge className={styles.badge}>{movie.ageRating.code}</Badge>
       </div>
+      {movie.synopsis && <p className={styles.synopsis}>{movie.synopsis}</p>}
       <div className={styles.footer}>
         <p className={styles.price}>From {formatPrice(movie.fromPrice)}</p>
         <span className={styles.buy}>Buy Ticket</span>

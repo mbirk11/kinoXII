@@ -23,3 +23,29 @@ export function formatShortDayMonth(date) {
     month: 'short',
   })
 }
+
+// "2026-10-09" in local time
+export function toDateKey(date) {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
+
+// Today plus the following days, as date keys
+export function getUpcomingDates(count = 7) {
+  const today = new Date()
+  return Array.from({ length: count }, (_, offset) => {
+    const date = new Date(today.getFullYear(), today.getMonth(), today.getDate() + offset)
+    return toDateKey(date)
+  })
+}
+
+// { weekday: "Mon", day: "15" }
+export function getDayParts(dateKey) {
+  const date = new Date(`${dateKey}T00:00:00`)
+  return {
+    weekday: date.toLocaleDateString('en-GB', { weekday: 'short' }),
+    day: String(date.getDate()),
+  }
+}

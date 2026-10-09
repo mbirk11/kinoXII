@@ -1,0 +1,96 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 252px;
+  height: 104px;
+  padding: 14px 16px;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  background-color: var(--bg-card);
+  text-align: left;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+.card:not(:disabled):hover {
+  border-color: var(--text-disabled);
+  background-color: var(--bg-raised);
+}
+
+.top,
+.middle,
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.time {
+  font-size: 18px;
+  font-weight: var(--font-extrabold);
+  line-height: normal;
+}
+
+.format {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background-color: var(--tint-white);
+  font-size: 12px;
+  font-weight: var(--font-semibold);
+  line-height: normal;
+}
+
+.language {
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--text-secondary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.seats {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: var(--font-semibold);
+  line-height: normal;
+  color: var(--color-green);
+}
+
+.low {
+  color: var(--color-red);
+}
+
+.soldOut {
+  flex-shrink: 0;
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--text-secondary);
+}
+
+.venue {
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: var(--font-semibold);
+  line-height: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.price {
+  flex-shrink: 0;
+  font-size: 16px;
+  font-weight: var(--font-extrabold);
+  line-height: normal;
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}

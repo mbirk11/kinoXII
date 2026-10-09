@@ -27,13 +27,15 @@
   --font-extrabold: 800;
 
   /* Layout */
-  --page-max-width: 1728px;
+  /* Every page is a fixed 1728px column, centred on wider screens */
+  --page-width: 1728px;
   --navbar-height: 111px;
 
   font-family: var(--font-family);
   font-weight: var(--font-regular);
   color: var(--text-primary);
-  background-color: var(--bg-page);
+  /* Outside the 1728px page column */
+  background-color: #000000;
   color-scheme: dark;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -155,7 +157,5 @@ button {
 
 /* Page container for pages that start below the navbar */
 .page {
-  max-width: var(--page-max-width);
-  margin: 0 auto;
   padding: calc(var(--navbar-height) + 8px) 51px 80px;
 }

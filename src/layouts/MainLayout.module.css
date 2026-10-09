@@ -1,5 +1,8 @@
 .layout {
   position: relative;
+  width: var(--page-width);
+  margin: 0 auto;
+  background-color: var(--bg-page);
   display: flex;
   flex-direction: column;
   min-height: 100vh;

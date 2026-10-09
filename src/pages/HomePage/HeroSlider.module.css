@@ -1,6 +1,4 @@
 .hero {
-  --slide-duration: 7s;
-
   position: relative;
   height: 760px;
   overflow: hidden;
@@ -30,7 +28,7 @@
 }
 
 .slideActive .backdrop {
-  animation: zoomOut var(--slide-duration) ease-out forwards;
+  animation: zoomOut 7s ease-out forwards;
 }
 
 .overlay {
@@ -43,7 +41,7 @@
 .content {
   position: absolute;
   bottom: 179px;
-  left: max(67px, calc(50% - 797px));
+  left: 67px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -81,7 +79,6 @@
   font-size: 40px;
   font-weight: var(--font-extrabold);
   line-height: normal;
-  text-transform: uppercase;
 }
 
 .badges {
@@ -115,8 +112,8 @@
 .controls {
   position: absolute;
   bottom: 42px;
-  left: max(67px, calc(50% - 797px));
-  right: max(67px, calc(50% - 797px));
+  left: 67px;
+  right: 67px;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -134,7 +131,11 @@
   height: 3px;
   border-radius: 999px;
   background-color: var(--text-primary);
-  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.segmentActive {
+  background-color: var(--color-red);
 }
 
 /* Bigger click target than the 3px bar */
@@ -144,16 +145,7 @@
   inset: -10px 0;
 }
 
-.segmentFill {
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  background-color: var(--color-red);
-  transform-origin: left;
-  animation: fill var(--slide-duration) linear forwards;
-}
 
-.hero:hover .segmentFill,
 .hero:hover .slideActive .backdrop {
   animation-play-state: paused;
 }
@@ -182,14 +174,6 @@
   transform: scaleX(-1);
 }
 
-@keyframes fill {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
 
 @keyframes zoomOut {
   from {
