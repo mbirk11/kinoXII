@@ -74,11 +74,14 @@ export async function apiRequest(path, { method = 'GET', body, params, skipAuthH
     if (response.status === 401 && !skipAuthHandler && unauthorizedHandler) {
       unauthorizedHandler()
     }
-    throw new ApiError(
+    const error = new ApiError(
       response.status,
       data?.message ?? 'Something went wrong. Please try again.',
       data?.errors ?? null,
     )
+    // Seat conflicts (409) name the seats that were taken
+    error.contested = data?.contested ?? []
+    throw error
   }
 
   return data

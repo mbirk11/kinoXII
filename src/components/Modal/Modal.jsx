@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import closeIcon from '../../assets/icons/close.svg'
 import styles from './Modal.module.css'
 
-function Modal({ isOpen, onClose, title, subtitle, className = '', children }) {
+function Modal({ isOpen, onClose, title, subtitle, headerExtra, className = '', children }) {
   useEffect(() => {
     if (!isOpen) return
 
@@ -33,9 +33,12 @@ function Modal({ isOpen, onClose, title, subtitle, className = '', children }) {
             <h2 className={styles.title}>{title}</h2>
             {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
           </div>
-          <button type="button" className={styles.close} onClick={onClose} aria-label="Close">
-            <img src={closeIcon} alt="" width="24" height="24" />
-          </button>
+          <div className={styles.headerActions}>
+            {headerExtra}
+            <button type="button" className={styles.close} onClick={onClose} aria-label="Close">
+              <img src={closeIcon} alt="" width="24" height="24" />
+            </button>
+          </div>
         </div>
         {children}
       </div>
