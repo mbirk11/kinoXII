@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Button from '../Button/Button'
 import Logo from '../Logo/Logo'
 import ProfileMenu from '../ProfileMenu/ProfileMenu'
@@ -8,9 +8,11 @@ import styles from './Navbar.module.css'
 
 function Navbar() {
   const { user, isAuthLoading, openLogin, openRegister } = useAuth()
+  // The home hero gets a stronger shadow so the navbar reads over bright images
+  const isOverHero = useLocation().pathname === '/'
 
   return (
-    <header className={styles.navbar}>
+    <header className={`${styles.navbar} ${isOverHero ? styles.overHero : ''}`}>
       <div className={styles.inner}>
         <nav className={styles.left}>
           <Logo />

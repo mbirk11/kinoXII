@@ -6,7 +6,7 @@
   z-index: 10;
 }
 
-/* Shadow behind the navbar so it stays readable over bright hero images */
+/* Soft shadow from the Figma navbar background */
 .navbar::before {
   content: '';
   position: absolute;
@@ -14,6 +14,18 @@
   left: 0;
   right: 0;
   z-index: -1;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.56) 0%,
+    rgba(0, 0, 0, 0.51) 30%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  pointer-events: none;
+}
+
+/* Stronger shadow over the home hero so the navbar stays readable on bright images */
+.overHero::before {
   height: 180px;
   background: linear-gradient(
     180deg,
@@ -21,7 +33,6 @@
     rgba(0, 0, 0, 0.6) 45%,
     rgba(0, 0, 0, 0) 100%
   );
-  pointer-events: none;
 }
 
 .inner {
