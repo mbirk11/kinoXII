@@ -79,3 +79,24 @@ export function validateCvv(value) {
   if (!/^\d{3}$/.test(value)) return 'CVV must be 3 digits'
   return null
 }
+
+const MIN_AGE = 12
+
+export function getAge(dateOfBirth) {
+  const birth = new Date(`${dateOfBirth}T00:00:00`)
+  const today = new Date()
+  let age = today.getFullYear() - birth.getFullYear()
+  const beforeBirthday =
+    today.getMonth() < birth.getMonth() ||
+    (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate())
+  if (beforeBirthday) age -= 1
+  return age
+}
+
+export function validateDateOfBirth(value) {
+  if (!value) return 'Date of birth is required'
+  const date = new Date(`${value}T00:00:00`)
+  if (Number.isNaN(date.getTime()) || date > new Date()) return 'Please enter a valid date of birth'
+  if (getAge(value) < MIN_AGE) return 'You must be at least 12 years old to create an account'
+  return null
+}
