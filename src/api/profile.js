@@ -24,7 +24,8 @@ export async function getTickets(filter) {
   return data
 }
 
-export async function refundOrder(orderId) {
-  const { data } = await apiRequest(`/orders/${orderId}/refund`, { method: 'POST' })
+// The path key is the order reference (KX-...), not the numeric id
+export async function refundOrder(reference) {
+  const { data } = await apiRequest(`/orders/${reference}/refund`, { method: 'POST' })
   return data
 }
