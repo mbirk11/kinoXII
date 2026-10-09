@@ -24,8 +24,13 @@
   transition: background-color 0.2s;
 }
 
-.day:hover {
+.day:not(:disabled):hover {
   background-color: var(--text-disabled);
+}
+
+.day:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
 }
 
 .active,
