@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import closeIcon from '../../assets/icons/close.svg'
 import styles from './Modal.module.css'
 
-function Modal({ isOpen, onClose, title, subtitle, headerExtra, className = '', children }) {
+function Modal({ isOpen, onClose, title, ariaLabel, subtitle, headerExtra, className = '', children }) {
   useEffect(() => {
     if (!isOpen) return
 
@@ -27,10 +27,10 @@ function Modal({ isOpen, onClose, title, subtitle, headerExtra, className = '', 
 
   return createPortal(
     <div className={styles.overlay} onMouseDown={handleOverlayMouseDown}>
-      <div className={`${styles.modal} ${className}`} role="dialog" aria-modal="true" aria-label={title}>
+      <div className={`${styles.modal} ${className}`} role="dialog" aria-modal="true" aria-label={title || ariaLabel}>
         <div className={styles.header}>
           <div className={styles.titles}>
-            <h2 className={styles.title}>{title}</h2>
+            {title && <h2 className={styles.title}>{title}</h2>}
             {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
           </div>
           <div className={styles.headerActions}>

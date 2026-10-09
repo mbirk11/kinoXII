@@ -1,5 +1,7 @@
 export function formatPrice(amount) {
-  return `₾ ${Number(amount).toLocaleString('en-US', { maximumFractionDigits: 2 })}`
+  const value = Number(amount)
+  const digits = Number.isInteger(value) ? 0 : 2
+  return `₾ ${value.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: 2 })}`
 }
 
 // "Thriller · 102 min"

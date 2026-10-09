@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
+import BookingModal from '../../components/BookingModal/BookingModal'
 import ErrorState from '../../components/ErrorState/ErrorState'
 import Skeleton from '../../components/Skeleton/Skeleton'
 import useAsync from '../../hooks/useAsync'
@@ -14,13 +15,21 @@ import styles from './MoviePage.module.css'
 
 function MoviePage() {
   const { movieId } = useParams()
-  const [, setSearchParams] = useSearchParams()
-  const { user, requireAuth } = useAuth()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const { user, isAuthLoading, requireAuth, openLogin } = useAuth()
+  const bookingSessionId = searchParams.get('session')
   const { data: movie, isLoading, error, retry } = useAsync(() => getMovie(movieId), [movieId])
 
   useEffect(() => {
     if (movie) addRecentlyViewed(movie)
   }, [movie])
+
+  // A booking link opened by a guest asks them to log in first
+  useEffect(() => {
+    if (bookingSessionId && !user && !isAuthLoading) openLogin()
+  }, [bookingSessionId, user, isAuthLoading, openLogin])
+
+  const closeBooking = () => setSearchParams({}, { replace: true })
 
   if (isLoading) {
     return (
@@ -74,6 +83,9 @@ function MoviePage() {
         />
         <MovieDetails movie={movie} />
       </div>
+      {bookingSessionId && user && (
+        <BookingModal key={bookingSessionId} sessionId={bookingSessionId} onClose={closeBooking} />
+      )}
     </>
   )
 }
