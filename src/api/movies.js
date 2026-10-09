@@ -19,3 +19,8 @@ export async function subscribeToMovie(slug) {
   const { data } = await apiRequest(`/movies/${slug}/notify`, { method: 'POST' })
   return data
 }
+
+export async function searchMovies(query) {
+  const { data } = await apiRequest('/search', { params: { q: query } })
+  return data
+}
