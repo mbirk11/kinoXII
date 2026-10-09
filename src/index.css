@@ -27,7 +27,7 @@
   --font-extrabold: 800;
 
   /* Layout */
-  /* Every page is a fixed 1728px column, centred on wider screens */
+  /* Pages fill the screen up to 1728px, then stay centred */
   --page-width: 1728px;
   --navbar-height: 111px;
 

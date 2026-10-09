@@ -9,7 +9,8 @@
 /* Step indicator */
 .steps {
   display: flex;
-  width: 720px;
+  /* Lines up with the left column: the right panel and its gutter take 362px */
+  width: min(720px, calc(100% - 362px));
   height: 32px;
   padding: 0;
   border-radius: 999px;
@@ -85,8 +86,9 @@ button.step:disabled {
 }
 
 .main {
-  width: 720px;
-  flex-shrink: 0;
+  flex: 1;
+  min-width: 0;
+  max-width: 720px;
   padding-right: 20px;
   margin-right: 20px;
   border-right: 1px solid var(--bg-card);
@@ -94,7 +96,7 @@ button.step:disabled {
 
 .panel {
   display: flex;
-  flex: 1;
+  flex: 0 0 321px;
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
@@ -530,7 +532,8 @@ button.step:disabled {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 673px;
+  width: 100%;
+  max-width: 673px;
   margin-top: 4px;
   padding: 20px;
   border-radius: 16px;
